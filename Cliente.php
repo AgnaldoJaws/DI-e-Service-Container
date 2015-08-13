@@ -4,14 +4,18 @@ require_once  'Conexao.php';
 
 class Cliente {
 	
+	private $db;
+	public function __construct($conexao){
+		
+		$this->db = $conexao->conect();
+	}
 	
 	public function listar (){
+			
 		
-		$cliente = new Conexão('localhost', 'pc_help','root' ,'123');
-		$db = $cliente->conect();
 		
 		$query = "select * from cliente";		
-		$stm = $db->query($query);	
+		$stm = $this->db->query($query);	
 		$stm->execute();	
 		return  $stm->fetchAll(\PDO::FETCH_OBJ);		
 		
